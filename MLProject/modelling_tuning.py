@@ -62,7 +62,7 @@ if __name__ == "__main__":
     
         best_params = opt.best_params_
         best_score = opt.best_score_
-        mlflow.log_param("n_estimators", best_params['n_estimators'])
-        mlflow.log_param("max_depth", best_params['max_depth'])
+        mlflow.log_param("best_n_estimators", best_params['n_estimators'])
+        mlflow.log_param("best_max_depth", best_params['max_depth'])
         mlflow.log_metric("cv_accuracy", best_score)
         mlflow.sklearn.log_model(opt.best_estimator_, "model", input_example=input_example)
