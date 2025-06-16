@@ -1,0 +1,14 @@
+artifact_uri: file:///home/runner/work/CI/CI/MLProject/mlruns/0/d034cd623bcf4e269083ad65e36f6b53/artifacts
+end_time: 1750080266560
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d034cd623bcf4e269083ad65e36f6b53
+run_name: abrasive-sloth-134
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750080223146
+status: 3
+tags: []
+user_id: runner
