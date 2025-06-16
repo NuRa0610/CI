@@ -50,6 +50,10 @@ jobs:
         working-directory: ./MLProject
         run: |
           mlflow run . --env-manager=local 
+      
+      - name: Buat folder mlruns jika belum ada
+        run: |
+          mkdir -p mlruns
 
       # Save models to GitHub Repository
       - name: Save mlruns to repo
