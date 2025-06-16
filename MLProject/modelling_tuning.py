@@ -14,8 +14,10 @@ if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     np.random.seed(40)
 
-    file_path = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "bots_vs_users_preprocessing.pkl")
-    
+    n_estimators_max = int(sys.argv[1]) if len(sys.argv) > 1 else 100
+    max_depth_max = int(sys.argv[2]) if len(sys.argv) > 2 else 50
+    file_path = sys.argv[3] if len(sys.argv) > 3 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "bots_vs_users_preprocessing.pkl")
+
     with open(file_path, 'rb') as f:
         loaded_data = pickle.load(f)
     X_train = loaded_data['X_train']
@@ -28,8 +30,8 @@ if __name__ == "__main__":
     input_example = X_train[0:1]
 
     search_space = {
-        'n_estimators': Integer(10, 100),
-        'max_depth': Integer(1, 50)
+        'n_estimators': Integer(10, n_estimators_max),
+        'max_depth': Integer(1, max_depth_max)
     }
     n_iter = 50
 
