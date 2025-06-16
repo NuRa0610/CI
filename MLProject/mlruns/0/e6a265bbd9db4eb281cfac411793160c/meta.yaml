@@ -1,0 +1,14 @@
+artifact_uri: file:///home/runner/work/CI/CI/MLProject/mlruns/0/e6a265bbd9db4eb281cfac411793160c/artifacts
+end_time: 1750078937048
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e6a265bbd9db4eb281cfac411793160c
+run_name: melodic-vole-544
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750078892839
+status: 3
+tags: []
+user_id: runner
