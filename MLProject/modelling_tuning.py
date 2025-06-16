@@ -10,6 +10,15 @@ from skopt import BayesSearchCV
 from skopt.space import Integer
 from skopt.callbacks import VerboseCallback
 
+def mlflow_callback(res):
+    params = res.x_iters[-1]
+    param_names = list(opt.search_spaces.keys())
+    param_dict = dict(zip(param_names, params))
+    score = res.func_vals[-1]
+    for k, v in param_dict.items():
+        mlflow.log_metric(f"{k}_trial", v)  # log_metric, bukan log_param
+    mlflow.log_metric("cv_accuracy_trial", score)
+
 if __name__ == "__main__":
     warnings.filterwarnings("ignore")
     np.random.seed(40)
@@ -35,15 +44,6 @@ if __name__ == "__main__":
     }
     n_iter = 50
 
-    def mlflow_callback(res):
-        params = res.x_iters[-1]
-        param_names = list(opt.search_spaces.keys())
-        param_dict = dict(zip(param_names, params))
-        score = res.func_vals[-1]
-        for k, v in param_dict.items():
-            mlflow.log_param(k, v)
-        mlflow.log_metric("cv_accuracy", score)
-
     opt = BayesSearchCV(
         RandomForestClassifier(random_state=42),
         search_spaces=search_space,
@@ -53,7 +53,8 @@ if __name__ == "__main__":
         n_jobs=-1
     )
 
-    with mlflow.start_run(run_name="bayes_search_rf"): #, nested=True):
+    # Hanya satu start_run di sini, tanpa nested=True
+    with mlflow.start_run(run_name="bayes_search_rf"):
         opt.fit(
             X_train, y_train,
             callback=[mlflow_callback, VerboseCallback(n_total=n_iter)]
