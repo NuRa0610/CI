@@ -25,7 +25,7 @@ if __name__ == "__main__":
     y_train = loaded_data['y_train']
     y_test = loaded_data['y_test']
 
-    mlflow.set_experiment("Latihan MSML")
+    #mlflow.set_experiment("Latihan MSML")
 
     input_example = X_train[0:1]
 
@@ -40,10 +40,9 @@ if __name__ == "__main__":
         param_names = list(opt.search_spaces.keys())
         param_dict = dict(zip(param_names, params))
         score = res.func_vals[-1]
-        with mlflow.start_run(run_name="bayes_search_rf", nested=True):
-            for k, v in param_dict.items():
-                mlflow.log_param(k, v)
-            mlflow.log_metric("cv_accuracy", score)
+        for k, v in param_dict.items():
+            mlflow.log_param(k, v)
+        mlflow.log_metric("cv_accuracy", score)
 
     opt = BayesSearchCV(
         RandomForestClassifier(random_state=42),
@@ -54,7 +53,7 @@ if __name__ == "__main__":
         n_jobs=-1
     )
 
-    with mlflow.start_run(run_name="bayes_search_rf", nested=True):
+    with mlflow.start_run(run_name="bayes_search_rf"): #, nested=True):
         opt.fit(
             X_train, y_train,
             callback=[mlflow_callback, VerboseCallback(n_total=n_iter)]
