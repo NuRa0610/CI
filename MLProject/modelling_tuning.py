@@ -54,7 +54,7 @@ if __name__ == "__main__":
         n_jobs=-1
     )
 
-    with mlflow.start_run(run_name="bayes_search_rf"):
+    with mlflow.start_run(run_name="bayes_search_rf", nested=True):
         opt.fit(
             X_train, y_train,
             callback=[mlflow_callback, VerboseCallback(n_total=n_iter)]
