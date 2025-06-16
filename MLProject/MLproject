@@ -1,0 +1,9 @@
+name: latihan-sml
+conda_env: conda.yaml
+entry_points:
+  main:
+    parameters:
+      n_estimators: {type: int, default: 50}
+      max_depth: {type: int, default: 30}
+      dataset: {type: str, default: "bots_vs_users_preprocessing.pkl"}
+    command: "python modelling.py {n_estimators} {max_depth} {dataset}"
