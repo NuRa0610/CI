@@ -6,7 +6,7 @@ on:
     branches:
       - main
 env:
-  DATA_PATH: "MLproject/train_pca.csv"
+  DATA_PATH: "MLproject/bots_vs_users_preprocessing.pkl"
 
 jobs:
   build:
