@@ -49,7 +49,7 @@ jobs:
 
         run: |
 
-          mlflow run MLproject --env-manager=local 
+          mlflow run .\MLproject --env-manager=local 
 
       # Save models to GitHub Repository
       - name: Save mlruns to repo
