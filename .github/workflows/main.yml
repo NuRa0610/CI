@@ -46,10 +46,8 @@ jobs:
       # Run as a mlflow project
 
       - name: Run mlflow project
-
+        working-directory: ./MLProject
         run: |
-          
-          working-directory: ./MLProject
           mlflow run . --env-manager=local 
 
       # Save models to GitHub Repository
